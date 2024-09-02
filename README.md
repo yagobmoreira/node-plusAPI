@@ -25,11 +25,25 @@ Este repositório contém uma API backend em desenvolvimento, utilizando Node.js
 
 Crie um arquivo `.env.development.local` na raiz do projeto, de acordo com o exemplo [.env.example](/.env.example)
 
+```shell
+touch .env.development.local
+```
+
 ### Banco de dados
 
 Você pode configurar o banco de dados MySQL localmente ou utilizar o Docker.
 
 #### Usando Docker Compose
+
+Na raiz do projeto, crie uma pasta chamada backup e insira o arquivo .sql de backup do banco de dados dentro dela.
+
+```bash
+mkdir backup
+```
+
+```bash
+cp arquivo.sql backup
+```
 
 Na raíz do projeto, execute o comando:
 
