@@ -71,3 +71,74 @@ model Pessoa {
 
   @@map("pessoa")
 }
+
+model Item {
+  id                Int      @id @default(autoincrement())
+  cod_ncm           String?  @db.VarChar(11)
+  descricao         String?
+  aliq_cofins       Decimal? @db.Decimal(19, 2)
+  aliq_icms         String?
+  aliq_pis          Decimal? @db.Decimal(19, 2)
+  aplicacao         String?  @db.LongText
+  ativo             Boolean  @db.Bit(1)
+  cest              Int?
+  cod_barras        String?
+  cod_interno       String?
+  cod_item          Int?
+  cst_pis_cofins    String?
+  descricao_pdv     String?
+  item_estoque      Int?
+  exige_num_serie   Boolean  @db.Bit(1)
+  fator_conv_unid   Decimal? @db.Decimal(2, 0)
+  grade             Int?
+  id_categoria      Int? //fk
+  id_empresa        Int?
+  id_preco          Int?
+  id_tipo           Int? //fk
+  id_unidade        Int? //fk
+  id_unidade_frag   Int?
+  inativo           String?
+  origem_mercadoria String?
+  ref               String?
+  tipo_tributacao   String?
+  custo_atual       Decimal? @db.Decimal(19, 2)
+  margem            Decimal? @db.Decimal(19, 2)
+  preco_venda       Decimal? @db.Decimal(19, 2)
+  status_cod_ncm    String?
+  ncm               Int?
+
+  categoria   ItemCategoria? @relation(fields: [id_categoria], references: [id])
+  itemTipo    ItemTipo?      @relation(fields: [id_tipo], references: [id])
+  itemUnidade ItemUnidade?   @relation(fields: [id_unidade], references: [id])
+
+  @@map("item")
+}
+
+model ItemCategoria {
+  id        Int     @id @default(autoincrement())
+  descricao String?
+
+  Item Item[]
+
+  @@map("item_categoria")
+}
+
+model ItemTipo {
+  id        Int     @id @default(autoincrement())
+  descricao String?
+  cod       String? @db.VarChar(2)
+
+  Item Item[]
+
+  @@map("item_tipo")
+}
+
+model ItemUnidade {
+  id          Int     @id @default(autoincrement())
+  abreviatura String?
+  descricao   String?
+
+  Item Item[]
+
+  @@map("item_unidade")
+}
