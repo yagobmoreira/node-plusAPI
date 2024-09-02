@@ -9,7 +9,7 @@ export class PessoasController {
 
   @Get('cliente_lista')
   @ApiOkResponse({ type: [PessoaEntity] })
-  findAll() {
-    return this.pessoasService.findAll();
+  async findAll() {
+    return await this.pessoasService.findAll();
   }
 }

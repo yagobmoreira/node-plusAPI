@@ -118,7 +118,7 @@ model ItemCategoria {
   id        Int     @id @default(autoincrement())
   descricao String?
 
-  Item Item[]
+  itens Item[]
 
   @@map("item_categoria")
 }
@@ -128,7 +128,7 @@ model ItemTipo {
   descricao String?
   cod       String? @db.VarChar(2)
 
-  Item Item[]
+  itens Item[]
 
   @@map("item_tipo")
 }
@@ -138,7 +138,7 @@ model ItemUnidade {
   abreviatura String?
   descricao   String?
 
-  Item Item[]
+  itens Item[]
 
   @@map("item_unidade")
 }

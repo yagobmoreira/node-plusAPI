@@ -107,7 +107,12 @@ export class PessoaEntity implements Pessoa {
   @ApiProperty({ required: false, nullable: true })
   pis: string | null;
 
-  @ApiProperty({ required: false, nullable: true })
+  @ApiProperty({
+    required: false,
+    nullable: true,
+    type: 'number',
+    format: 'decimal',
+  })
   aliq_cred_icmssn: Prisma.Decimal | null;
 
   @ApiProperty({ required: false, nullable: true })
@@ -158,7 +163,12 @@ export class PessoaEntity implements Pessoa {
   @ApiProperty({ required: false, nullable: true })
   empresa: number | null;
 
-  @ApiProperty({ required: false, nullable: true })
+  @ApiProperty({
+    required: false,
+    nullable: true,
+    type: 'number',
+    format: 'decimal',
+  })
   saldo: Prisma.Decimal | null;
 
   @ApiProperty({ required: false, nullable: true })
