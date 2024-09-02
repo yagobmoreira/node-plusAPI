@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Pessoa {
+  id                Int       @id @default(autoincrement())
+  DTYPE             String    @db.VarChar(31)
+  id_empresa        Int?
+  cnpj              String?
+  contato_padrao    Int?
+  cpf               String?
+  endereco_padrao   Int?
+  fantasia_apelido  String?
+  ie                String?
+  ind_ie            String?
+  is_cliente        Boolean?  @db.Bit(1)
+  is_colaborador    Boolean?  @db.Bit(1)
+  is_empresa        Boolean?  @db.Bit(1)
+  is_fornecedor     Boolean?  @db.Bit(1)
+  is_transportadora Boolean?  @db.Bit(1)
+  nome              String?
+  tipo              String?
+  ativo             Boolean?  @db.Bit(1)
+  certificado       String?
+  cod_cli           Int?      @default(0)
+  codcv             Int?
+  credito_icmssn    Boolean?  @db.Bit(1)
+  data_nasc         DateTime?
+  info_adicionais   String?   @db.LongText
+  rg                String?
+  senha_cert        String?
+  sexo              String?
+  dataNasc          DateTime?
+  id_pdv_operador   Int?
+  id_tecnico        Int?
+  id_usuario        Int?
+  id_vendedor       Int?
+  infoAdicionais    String?   @db.LongText
+  matricula         Int?      @default(0)
+  pis               String?
+  aliq_cred_icmssn  Decimal?  @db.Decimal(19, 2)
+  bloqueado         String?
+  cod_emp           Int?      @default(0)
+  contador          String?
+  crc               String?
+  crt               String?
+  data_instalacao   String?
+  msg               String?   @db.LongText
+  qtd_Terminal      Int?      @default(0)
+  cod_forn          Int?
+  senhaCert         String?
+  cod_transp        Int?      @default(0)
+  id_config_nfe     Int?
+  is_credenciadora  Boolean?  @db.Bit(1)
+  cod_cred          Int?      @default(0)
+  descricao         String?
+  empresa           Int?
+  saldo             Decimal?  @db.Decimal(19, 2)
+  cod               String?   @unique
+
+  @@map("pessoa")
+}
