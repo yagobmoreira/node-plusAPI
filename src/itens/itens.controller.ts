@@ -10,6 +10,7 @@ export class ItensController {
   @Get('itens_lista')
   @ApiOkResponse({ type: [ItemEntity] })
   async findAll() {
-    return await this.itensService.findAll();
+    const itens = await this.itensService.findAll();
+    return itens.map((item) => new ItemEntity(item));
   }
 }

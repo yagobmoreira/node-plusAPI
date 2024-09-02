@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Pessoa, Prisma } from '@prisma/client';
+import { Transform } from 'class-transformer';
 
 export class PessoaEntity implements Pessoa {
   @ApiProperty()
@@ -107,6 +108,12 @@ export class PessoaEntity implements Pessoa {
   @ApiProperty({ required: false, nullable: true })
   pis: string | null;
 
+  @Transform(({ value }) => {
+    if (value) {
+      return value.toNumber();
+    }
+    return null;
+  })
   @ApiProperty({
     required: false,
     nullable: true,
@@ -163,6 +170,12 @@ export class PessoaEntity implements Pessoa {
   @ApiProperty({ required: false, nullable: true })
   empresa: number | null;
 
+  @Transform(({ value }) => {
+    if (value) {
+      return value.toNumber();
+    }
+    return null;
+  })
   @ApiProperty({
     required: false,
     nullable: true,
@@ -173,4 +186,8 @@ export class PessoaEntity implements Pessoa {
 
   @ApiProperty({ required: false, nullable: true })
   cod: string | null;
+
+  constructor(partial: Partial<PessoaEntity>) {
+    Object.assign(this, partial);
+  }
 }

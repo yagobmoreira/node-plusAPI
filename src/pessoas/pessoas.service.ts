@@ -7,9 +7,11 @@ export class PessoasService {
   constructor(private readonly prisma: PrismaService) {}
 
   async findAll(skip: number = 0): Promise<PessoaEntity[]> {
-    return await this.prisma.pessoa.findMany({
+    const pessoas = await this.prisma.pessoa.findMany({
       skip,
       take: 50,
     });
+
+    return pessoas.map((pessoa) => new PessoaEntity(pessoa));
   }
 }

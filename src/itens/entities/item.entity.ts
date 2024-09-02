@@ -9,6 +9,7 @@ import {
 import { ItemCategoriaEntity } from './item-categoria.entity';
 import { ItemTipoEntity } from './item-tipo.entity';
 import { ItemUnidadeEntity } from './item-unidade.entity';
+import { Transform } from 'class-transformer';
 
 export class ItemEntity implements Item {
   @ApiProperty()
@@ -20,6 +21,12 @@ export class ItemEntity implements Item {
   @ApiProperty({ required: false, nullable: true })
   descricao: string | null;
 
+  @Transform(({ value }) => {
+    if (value) {
+      return value.toNumber();
+    }
+    return null;
+  })
   @ApiProperty({
     required: false,
     nullable: true,
@@ -31,6 +38,12 @@ export class ItemEntity implements Item {
   @ApiProperty({ required: false, nullable: true })
   aliq_icms: string | null;
 
+  @Transform(({ value }) => {
+    if (value) {
+      return value.toNumber();
+    }
+    return null;
+  })
   @ApiProperty({
     required: false,
     nullable: true,
@@ -69,6 +82,12 @@ export class ItemEntity implements Item {
   @ApiProperty({ required: false, nullable: true })
   exige_num_serie: boolean | null;
 
+  @Transform(({ value }) => {
+    if (value) {
+      return value.toNumber();
+    }
+    return null;
+  })
   @ApiProperty({
     required: false,
     nullable: true,
@@ -110,6 +129,12 @@ export class ItemEntity implements Item {
   @ApiProperty({ required: false, nullable: true })
   tipo_tributacao: string | null;
 
+  @Transform(({ value }) => {
+    if (value) {
+      return value.toNumber();
+    }
+    return null;
+  })
   @ApiProperty({
     required: false,
     nullable: true,
@@ -118,6 +143,12 @@ export class ItemEntity implements Item {
   })
   custo_atual: Prisma.Decimal | null;
 
+  @Transform(({ value }) => {
+    if (value) {
+      return value.toNumber();
+    }
+    return null;
+  })
   @ApiProperty({
     required: false,
     nullable: true,
@@ -126,6 +157,12 @@ export class ItemEntity implements Item {
   })
   margem: Prisma.Decimal | null;
 
+  @Transform(({ value }) => {
+    if (value) {
+      return value.toNumber();
+    }
+    return null;
+  })
   @ApiProperty({
     required: false,
     nullable: true,
@@ -156,4 +193,8 @@ export class ItemEntity implements Item {
     nullable: true,
   })
   itemUnidade: ItemUnidade | null;
+
+  constructor(partial: Partial<ItemEntity>) {
+    Object.assign(this, partial);
+  }
 }
